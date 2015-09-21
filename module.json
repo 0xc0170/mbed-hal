@@ -16,9 +16,6 @@
   "extraIncludes": [
     "mbed-hal"
   ],
-  "dependencies": {
-    "mbed-drivers": "*"
-  },
   "targetDependencies": {
     "silabs": {
       "mbed-hal-silabs": "~0.4.0"
