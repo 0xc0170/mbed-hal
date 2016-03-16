@@ -44,6 +44,11 @@ uint32_t lp_ticker_read(void);
 
 /** Set interrupt for specified time
  *
+ * It should check if the current counter is in the valid range (now, time).
+ * If it is not, it should return. Assuming the range check is fine, it should set a new
+ * interrupt to a new_time which can be either:
+ * - for timers with deltas, new_time = time - current counter
+ * - for absolute time timers (=matching interrupt with counter running) new_time = time.
  * @param now  The current time
  * @param time The time to be matched
  */
@@ -63,6 +68,9 @@ uint32_t lp_ticker_get_compare_match(void);
 
 /** Set lp ticker interrupt and enter mbed sleep.
  *
+ * This function should set sleep until time. It should check if the current counter
+ * is in the valid range (now, time). If it is not, it should return, otherwise invoke lp_ticker_set_interrupt
+ * and set sleep using mbed sleep API.
  * @param now  The current time
  * @param time The time to be matched
  */
